@@ -1,15 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   checker_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/16 21:03:45 by torinoue          #+#    #+#             */
-/*   Updated: 2026/01/08 03:30:05 by toruinoue        ###   ########.fr       */
+/*   Created: 2025/11/03 21:25:55 by torinoue          #+#    #+#             */
+/*   Updated: 2026/01/08 03:43:23 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "push_swap.h"
 
@@ -54,22 +53,11 @@ int	execute_instruction(char *line, t_stack **a, t_stack **b)
 	return (1);
 }
 
-static char	*ft_strjoin_char(char *str, char c)
+static char	*add_char_to_str(char *str, char c, int len)
 {
 	char	*new_str;
 	int		i;
-	int		len;
 
-	if (!str)
-	{
-		new_str = malloc(2);
-		if (!new_str)
-			return (NULL);
-		new_str[0] = c;
-		new_str[1] = '\0';
-		return (new_str);
-	}
-	len = ft_strlen(str);
 	new_str = malloc(len + 2);
 	if (!new_str)
 	{
@@ -88,71 +76,27 @@ static char	*ft_strjoin_char(char *str, char c)
 	return (new_str);
 }
 
-int	read_instructions(t_stack **a, t_stack **b)
+char	*ft_strjoin_char(char *str, char c)
 {
-	char	buffer[1];
-	char	*line;
-	ssize_t	read_bytes;
-
-	line = NULL;
-	while (1)
+	if (!str)
 	{
-		read_bytes = read(0, buffer, 1);
-		if (read_bytes <= 0)
-			break ;
-		if (buffer[0] == '\n')
-		{
-			if (line && line[0] != '\0')
-			{
-				if (!execute_instruction(line, a, b))
-				{
-					free(line);
-					return (0);
-				}
-				free(line);
-				line = NULL;
-			}
-		}
-		else
-		{
-			line = ft_strjoin_char(line, buffer[0]);
-			if (!line)
-				return (0);
-		}
+		str = malloc(2);
+		if (!str)
+			return (NULL);
+		str[0] = c;
+		str[1] = '\0';
+		return (str);
 	}
-	if (line)
+	return (add_char_to_str(str, c, ft_strlen(str)));
+}
+
+int	process_line(char *line, t_stack **a, t_stack **b)
+{
+	if (!execute_instruction(line, a, b))
+	{
 		free(line);
+		return (0);
+	}
+	free(line);
 	return (1);
 }
-
-int	main(int argc, char **argv)
-{
-	t_stack	*a;
-	t_stack	*b;
-
-	a = NULL;
-	b = NULL;
-	if (argc < 2)
-		return (0);
-	if (!parse_args(argc, argv, &a))
-	{
-		ft_putstr_fd("Error\n", 2);
-		clear_stack(&a);
-		return (1);
-	}
-	if (!read_instructions(&a, &b))
-	{
-		ft_putstr_fd("Error\n", 2);
-		clear_stack(&a);
-		clear_stack(&b);
-		return (1);
-	}
-	if (is_sorted(a) && stack_size(b) == 0)
-		ft_putstr_fd("OK\n", 1);
-	else
-		ft_putstr_fd("KO\n", 1);
-	clear_stack(&a);
-	clear_stack(&b);
-	return (0);
-}
-

@@ -1,22 +1,23 @@
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   finalize_mac.c                                     :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: torinoue <torinoue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 21:25:55 by torinoue          #+#    #+#             */
-/*   Updated: 2025/11/03 21:26:34 by torinoue         ###   ########.fr       */
+/*   Updated: 2026/01/08 03:43:23 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
 # include <stdbool.h>
-# include "lib/libft/libft.h"
+# include "../lib/libft/libft.h"
 
 typedef struct s_stack
 {
@@ -53,6 +54,7 @@ bool	is_number(const char *str);
 // Checker functions
 int		execute_instruction(char *line, t_stack **a, t_stack **b);
 int		read_instructions(t_stack **a, t_stack **b);
+char	*ft_strjoin_char(char *str, char c);
+int		process_line(char *line, t_stack **a, t_stack **b);
 
 #endif
-

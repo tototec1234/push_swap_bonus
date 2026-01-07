@@ -6,7 +6,7 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 21:25:55 by torinoue          #+#    #+#             */
-/*   Updated: 2026/01/08 03:26:16 by toruinoue        ###   ########.fr       */
+/*   Updated: 2026/01/08 03:38:56 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,3 @@ void	clear_stack(t_stack **stack)
 		*stack = tmp;
 	}
 }
-

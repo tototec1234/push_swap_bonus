@@ -6,11 +6,9 @@
 /*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 21:25:55 by torinoue          #+#    #+#             */
-/*   Updated: 2026/01/08 03:30:05 by toruinoue        ###   ########.fr       */
+/*   Updated: 2026/01/08 03:38:54 by toruinoue        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "push_swap.h"
 
@@ -89,4 +87,3 @@ int	parse_args(int argc, char **argv, t_stack **a)
 		return (0);
 	return (1);
 }
-
