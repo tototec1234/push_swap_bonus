@@ -1,31 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/03 21:25:55 by torinoue          #+#    #+#             */
+/*   Updated: 2026/01/08 03:30:05 by toruinoue        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
+
 #include "push_swap.h"
-
-long	ft_atol(const char *str)
-{
-	long	result;
-	int		sign;
-	int		i;
-
-	result = 0;
-	sign = 1;
-	i = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = result * 10 + (str[i] - '0');
-		if (result > (long)INT_MAX + 1)
-			return (LONG_MAX);
-		i++;
-	}
-	return (result * sign);
-}
 
 bool	is_number(const char *str)
 {
@@ -34,11 +21,11 @@ bool	is_number(const char *str)
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
-	if (!str[i] || !(str[i] >= '0' && str[i] <= '9'))
+	if (!str[i] || !ft_isdigit(str[i]))
 		return (false);
 	while (str[i])
 	{
-		if (!(str[i] >= '0' && str[i] <= '9'))
+		if (!ft_isdigit(str[i]))
 			return (false);
 		i++;
 	}

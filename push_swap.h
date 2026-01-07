@@ -1,10 +1,22 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   finalize_mac.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: torinoue <torinoue@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/03 21:25:55 by torinoue          #+#    #+#             */
+/*   Updated: 2025/11/03 21:26:34 by torinoue         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
 # include <stdbool.h>
+# include "lib/libft/libft.h"
 
 typedef struct s_stack
 {
@@ -37,7 +49,6 @@ int		parse_args(int argc, char **argv, t_stack **a);
 bool	is_sorted(t_stack *a);
 bool	has_duplicates(t_stack *a);
 bool	is_number(const char *str);
-long	ft_atol(const char *str);
 
 // Checker functions
 int		execute_instruction(char *line, t_stack **a, t_stack **b);

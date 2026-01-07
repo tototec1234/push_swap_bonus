@@ -1,13 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: toruinoue <toruinoue@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/16 21:03:45 by torinoue          #+#    #+#             */
+/*   Updated: 2026/01/08 03:30:05 by toruinoue        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include "push_swap.h"
 
 static int	compare_instruction(const char *line, const char *instr)
 {
-	int	i;
+	size_t	instr_len;
+	size_t	line_len;
 
-	i = 0;
-	while (line[i] && instr[i] && line[i] == instr[i])
-		i++;
-	return (line[i] == '\0' && instr[i] == '\0');
+	instr_len = ft_strlen(instr);
+	line_len = ft_strlen(line);
+	if (line_len != instr_len)
+		return (0);
+	return (ft_strncmp(line, instr, instr_len) == 0);
 }
 
 int	execute_instruction(char *line, t_stack **a, t_stack **b)
@@ -37,21 +52,6 @@ int	execute_instruction(char *line, t_stack **a, t_stack **b)
 	else
 		return (0);
 	return (1);
-}
-
-static size_t	ft_strlen(const char *s)
-{
-	size_t	len;
-
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
-}
-
-static void	ft_putstr_fd(const char *s, int fd)
-{
-	write(fd, s, ft_strlen(s));
 }
 
 static char	*ft_strjoin_char(char *str, char c)
